@@ -1,6 +1,7 @@
 package app.zyla;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -39,6 +41,17 @@ public class MainActivity extends AppCompatActivity {
         taskList = new ArrayList<>();
         taskListView = (ListView) findViewById(R.id.task_list);
 
+        taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, ShowTaskActivity.class);
+                Object itemAtPosition = taskListView.getItemAtPosition(position).hashCode();
+                //itemAtPosition.get()
+                //intent.putExtra("test", itemAtPosition);
+                System.out.println(itemAtPosition);
+                startActivity(intent);
+            }
+        });
         new GetTasks().execute();
     }
 
@@ -96,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                     MainActivity.this,
                     taskList,
                     R.layout.list_item,
-                    new String[] {"title"},
+                    new String[] {"title", "id"},
                     new int[]{R.id.title}
             );
 
