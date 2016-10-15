@@ -1,18 +1,10 @@
-package app.zyla;
+package app.zyla.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -25,30 +17,34 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
+
+import app.zyla.adapters.TasksAdapter;
+import app.zyla.models.Task;
+import app.zyla.sync.HttpHandler;
+import app.zyla.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private ListView taskListView;
     private String url = "https://jsonplaceholder.typicode.com/todos"; //todo change to real webservice (just testing)
 
-    ArrayList<HashMap<String, String>> taskList;
+    ArrayList<Task> tasksList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        taskList = new ArrayList<>();
+        tasksList = new ArrayList<>();
         taskListView = (ListView) findViewById(R.id.task_list);
 
         taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, ShowTaskActivity.class);
-                Object itemAtPosition = taskListView.getItemAtPosition(position).hashCode();
-                //itemAtPosition.get()
-                //intent.putExtra("test", itemAtPosition);
-                System.out.println(itemAtPosition);
+                Task task = (Task) parent.getItemAtPosition(position);
+                intent.putExtra("taskToShow", task);
                 startActivity(intent);
             }
         });
@@ -68,28 +64,26 @@ public class MainActivity extends AppCompatActivity {
             if (jsonStr != null) {
                 try {
                     JSONArray tasks = new JSONArray(jsonStr);
-                    System.out.println(tasks);
 
                     for (int i = 0; i < tasks.length(); i++) {
                         JSONObject t = tasks.getJSONObject(i);
-                        String id    = t.getString("id");
+                        Integer id   = Integer.parseInt(t.getString("id"));
                         String title = t.getString("title");
 
-                        HashMap<String, String> task = new HashMap<>();
-                        task.put("id", id);
-                        task.put("title", title);
+                        Task task = new Task();
+                        task.setId(id);
+                        task.setName(title);
 
-                        // adding task to task list
-                        taskList.add(task);
+                        tasksList.add(task);
                     }
                 } catch (final JSONException e) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    Toast.LENGTH_LONG)
-                                    .show();
+                                "Json parsing error: " + e.getMessage(),
+                                Toast.LENGTH_LONG)
+                                .show();
                         }
                     });
                 }
@@ -101,21 +95,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-
-            /**
-             * Updating parsed JSON data into ListView
-             * */
-            ListAdapter adapter = new SimpleAdapter(
-                    MainActivity.this,
-                    taskList,
-                    R.layout.list_item,
-                    new String[] {"title", "id"},
-                    new int[]{R.id.title}
-            );
-
+            TasksAdapter adapter = new TasksAdapter(MainActivity.this, tasksList);
             taskListView.setAdapter(adapter);
         }
-
     }
 
 }

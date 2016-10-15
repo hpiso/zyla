@@ -1,4 +1,4 @@
-package app.zyla;
+package app.zyla.sync;
 
 import android.util.Log;
 
