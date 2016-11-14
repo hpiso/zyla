@@ -15,14 +15,14 @@ public class CreateTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_task);
+        setContentView(R.layout.create_task);
     }
 
     /** Called when the user clicks the Send button */
     public void createTask(View view) {
         Intent intent = new Intent(this, MainActivity.class);
 
-        EditText taskNameField = (EditText) findViewById(R.id.taskName);
+        EditText taskNameField = (EditText) findViewById(R.id.taskDescription);
         String taskName = taskNameField.getText().toString();
 
         Task task = new Task();

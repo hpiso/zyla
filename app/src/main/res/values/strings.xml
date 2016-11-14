@@ -3,6 +3,7 @@
     <string name="action_settings">Settings</string>
 
     <!--Create task-->
-    <string name="name_placeholder">Buying some food for christmas</string>
-    <string name="create_button">ADD</string>
+    <string name="name_placeholder">Buying some food..</string>
+    <string name="description_placeholder">Short description (optional)</string>
+    <string name="create_button">ADD TASK</string>
 </resources>
