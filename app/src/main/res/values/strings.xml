@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Zyla</string>
     <string name="action_settings">Settings</string>
+
+    <!--Create task-->
+    <string name="name_placeholder">Buying some food for christmas</string>
+    <string name="create_button">ADD</string>
 </resources>

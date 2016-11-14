@@ -31,7 +31,7 @@ public class TaskRepository extends SQLiteOpenHelper {
 
     }
 
-    // Adding new contact
+    // Adding new task
     public void addTask(Task task) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -44,7 +44,7 @@ public class TaskRepository extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    // Getting All Contacts
+    // Getting All tasks
     public List<Task> getAllTasks() {
         List<Task> taskList = new ArrayList<Task>();
         // Select All Query
