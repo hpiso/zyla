@@ -23,7 +23,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/taskDescription"
             android:layout_gravity="center_horizontal"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            android:inputType="textCapSentences|textAutoCorrect"
+            android:lines="2"
+            android:maxLines="3" />
 
         <TextView
             android:layout_width="match_parent"
