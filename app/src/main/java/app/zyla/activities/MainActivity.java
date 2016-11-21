@@ -1,6 +1,7 @@
 package app.zyla.activities;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -48,7 +49,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
         new GetTasks().execute();
     }
 

@@ -27,6 +27,7 @@ public class CreateTaskActivity extends AppCompatActivity {
 
         Task task = new Task();
         task.setName(taskName);
+        task.setIsDone(0);
 
         DatabaseHandler db = new DatabaseHandler(CreateTaskActivity.this);
         db.addTask(task);
