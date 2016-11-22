@@ -9,51 +9,61 @@
 
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
         android:gravity="center"
-        android:weightSum="1"
         android:id="@+id/textParentLayout"
-        android:layout_weight="0.33">
+        android:layout_weight="0.05">
 
-        <EditText
-            android:layout_width="324dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/taskDescription"
-            android:layout_gravity="center_horizontal"
-            android:textColor="#fff"
-            android:inputType="textCapSentences|textAutoCorrect"
-            android:lines="2"
-            android:maxLines="3" />
-
-        <TextView
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Or"
-            android:id="@+id/textView"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:id="@+id/left"
             android:gravity="center"
-            android:textColor="#fff"
-            android:layout_marginTop="15dp" />
+            android:padding="20dp">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add picture"
-            android:id="@+id/button"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.21"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp" />
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/taskDescription"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#fff"
+                android:inputType="textCapSentences|textAutoCorrect"
+                android:lines="2"
+                android:maxLines="3" />
+        </LinearLayout>
 
-        <Spinner
-            android:layout_width="348dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinnerCategories"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="0.12" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/right">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add picture"
+                android:id="@+id/button"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.21"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp" />
+        </LinearLayout>
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textAppearance="?android:attr/textAppearanceSmall"-->
+            <!--android:text="Or"-->
+            <!--android:id="@+id/textView"-->
+            <!--android:gravity="center"-->
+            <!--android:textColor="#fff"-->
+            <!--android:layout_marginTop="15dp" />-->
 
     </LinearLayout>
 
@@ -61,12 +71,19 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="117dp"
+        android:layout_height="88dp"
         android:baselineAligned="false"
-        android:background="#fff"
+        android:background="?attr/colorPrimary"
         android:weightSum="1"
-        android:layout_weight="0.36">
+        android:gravity="center_vertical"
+        android:padding="20dp">
 
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerCategories"
+            android:layout_weight="0.49"
+            android:layout_gravity="center" />
     </LinearLayout>
 
     <LinearLayout
