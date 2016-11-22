@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Task implements Serializable{
     private Integer id;
     private String name;
+    private String category;
     private Integer isDone;
 
     public Integer getId() {
@@ -29,5 +30,13 @@ public class Task implements Serializable{
 
     public void setIsDone(Integer isDone) {
         this.isDone = isDone;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

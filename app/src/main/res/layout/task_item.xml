@@ -11,7 +11,7 @@
         android:layout_height="fill_parent"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:background="@drawable/sport">
+        android:id="@+id/imgLayout">
 
     </LinearLayout>
 

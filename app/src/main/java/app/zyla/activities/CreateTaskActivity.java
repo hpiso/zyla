@@ -10,12 +10,14 @@ import android.widget.Spinner;
 
 import app.zyla.R;
 import app.zyla.database.DatabaseHandler;
+import app.zyla.models.Category;
 import app.zyla.models.Task;
 
 public class CreateTaskActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_task);
 
@@ -39,6 +41,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         Task task = new Task();
         task.setName(taskName);
         task.setIsDone(0);
+        task.setCategory(category);
 
         DatabaseHandler db = new DatabaseHandler(CreateTaskActivity.this);
         db.addTask(task);

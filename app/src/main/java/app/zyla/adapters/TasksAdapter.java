@@ -2,17 +2,21 @@ package app.zyla.adapters;
 
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import app.zyla.R;
+import app.zyla.models.Category;
 import app.zyla.models.Task;
 
 public class TasksAdapter extends ArrayAdapter<Task> {
@@ -30,6 +34,10 @@ public class TasksAdapter extends ArrayAdapter<Task> {
 
         TextView taskName = (TextView) convertView.findViewById(R.id.name);
         taskName.setText(task.getName());
+
+        LinearLayout imgLaout = (LinearLayout) convertView.findViewById(R.id.imgLayout);
+        int resourceId = getContext().getResources().getIdentifier(Enum.valueOf(Category.class, task.getCategory()).toString(), "drawable",getContext().getPackageName());
+        imgLaout.setBackgroundResource(resourceId);
 
         TextView isDone = (TextView) convertView.findViewById(R.id.isDone);
 

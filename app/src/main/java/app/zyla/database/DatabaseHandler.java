@@ -22,6 +22,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String KEY_ID = "id";
     public static final String KEY_NAME = "name";
     public static final String KEY_IS_DONE = "is_done";
+    public static final String KEY_CATEGORY = "category";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,7 +33,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         System.out.println("databse updated");
         String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT," + KEY_IS_DONE + " INTEGER DEFAULT 0" + ")";
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT," + KEY_IS_DONE + " INTEGER DEFAULT 0,"
+                + KEY_CATEGORY + " TEXT" + ")";
         db.execSQL(CREATE_TASKS_TABLE);
     }
 
@@ -64,6 +66,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(DatabaseHandler.KEY_NAME, task.getName());
         values.put(DatabaseHandler.KEY_IS_DONE, task.getIsDone());
+        values.put(DatabaseHandler.KEY_CATEGORY, task.getCategory());
 
         // Inserting Row
         db.insert(DatabaseHandler.TABLE_TASKS, null, values);
@@ -99,6 +102,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 task.setId(Integer.parseInt(cursor.getString(0)));
                 task.setName(cursor.getString(1));
                 task.setIsDone(cursor.getInt(2));
+                task.setCategory(cursor.getString(3));
                 // Adding contact to list
                 taskList.add(task);
             } while (cursor.moveToNext());
