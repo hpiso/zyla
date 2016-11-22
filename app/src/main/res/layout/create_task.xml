@@ -16,7 +16,7 @@
         android:gravity="center"
         android:weightSum="1"
         android:id="@+id/textParentLayout"
-        android:layout_weight="0.08">
+        android:layout_weight="0.33">
 
         <EditText
             android:layout_width="324dp"
@@ -48,6 +48,13 @@
             android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp" />
 
+        <Spinner
+            android:layout_width="348dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerCategories"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.12" />
+
     </LinearLayout>
 
 
@@ -58,7 +65,7 @@
         android:baselineAligned="false"
         android:background="#fff"
         android:weightSum="1"
-        android:layout_weight="0.63">
+        android:layout_weight="0.36">
 
     </LinearLayout>
 

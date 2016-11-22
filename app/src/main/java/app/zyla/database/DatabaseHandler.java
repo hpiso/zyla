@@ -40,7 +40,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
      * Exemple to delete and recreate database
      * DatabaseHandler db = new DatabaseHandler(MainActivity.this);
      * db.onUpgrade(db.getWritableDatabase(), 1, 2);
-     * To put on onCreate main activity
+     * To put on onCreate main activity for example
      *
      *
      * @param db

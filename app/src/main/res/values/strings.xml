@@ -6,4 +6,14 @@
     <string name="name_placeholder">Buying some food..</string>
     <string name="description_placeholder">Short description (optional)</string>
     <string name="create_button">ADD TASK</string>
+
+    <string-array name="task_categories">
+        <item>Sport</item>
+        <item>Grocery</item>
+        <item>Study</item>
+        <item>Cleaning</item>
+    </string-array>
+
 </resources>
+
+

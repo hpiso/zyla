@@ -1,29 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="@dimen/activity_horizontal_margin"
-    android:weightSum="1">
+    android:layout_height="100dp"
+    android:background="#eee"
+    android:nestedScrollingEnabled="false">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_snooze_black_24dp"
-        android:id="@+id/imageView" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:background="@drawable/sport">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="165dp"
-        android:layout_height="wrap_content"
-        android:paddingBottom="2dip"
-        android:paddingTop="6dip"
-        android:textColor="@color/orangeColor"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.5"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="165dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dip"
+            android:paddingTop="6dip"
+            android:textColor="@color/orangeColor"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/isDone"
+            android:layout_gravity="center_vertical|right" />
+    </LinearLayout>
 
 
 </LinearLayout>
