@@ -89,6 +89,26 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:weightSum="1"
+        android:gravity="center">
+
+        <EditText
+            android:layout_width="296dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/newDate"
+            android:layout_gravity="center_horizontal" />
+
+        <EditText
+            android:layout_width="288dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/newTime"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="62dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.30"
