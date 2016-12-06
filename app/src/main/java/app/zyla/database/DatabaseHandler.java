@@ -98,7 +98,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<Task> getAllTodoTasks() {
         ArrayList<Task> taskList = new ArrayList<Task>();
         // Select All Query
-        String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_TASKS + " where "+ KEY_IS_DONE +" = 0";
+        String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_TASKS
+                + " WHERE "+ KEY_IS_DONE +" = 0" + " ORDER BY " + KEY_LIMIT_DATE + ", "
+                + KEY_LIMIT_TIME + " ASC";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -127,7 +129,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public ArrayList<Task> getAllDoneTasks() {
         ArrayList<Task> taskList = new ArrayList<Task>();
         // Select All Query
-        String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_TASKS + " where "+ KEY_IS_DONE +" = 1";
+        String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_TASKS
+                + " WHERE "+ KEY_IS_DONE + " = 1" + " ORDER BY " + KEY_LIMIT_DATE + ", "
+                + KEY_LIMIT_TIME + " ASC";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
