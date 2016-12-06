@@ -35,6 +35,9 @@ public class TasksAdapter extends ArrayAdapter<Task> {
         TextView taskName = (TextView) convertView.findViewById(R.id.name);
         taskName.setText(task.getName());
 
+        TextView taskInfoDate = (TextView) convertView.findViewById(R.id.infoDate);
+        taskInfoDate.setText("Todo before 12 dec at 20:00");
+
         LinearLayout imgLaout = (LinearLayout) convertView.findViewById(R.id.imgLayout);
         int resourceId = getContext().getResources().getIdentifier(Enum.valueOf(Category.class, task.getCategory()).toString(), "drawable",getContext().getPackageName());
         imgLaout.setBackgroundResource(resourceId);
