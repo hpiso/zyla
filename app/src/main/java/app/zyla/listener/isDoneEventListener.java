@@ -29,6 +29,8 @@ public class isDoneEventListener implements CompoundButton.OnCheckedChangeListen
             task.setIsDone(0);
         }
 
+        task.setIsDoneDate(Task.getDateTime());
+
         DatabaseHandler db = new DatabaseHandler(this.context);
         db.updateTask(task);
     }

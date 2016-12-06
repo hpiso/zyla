@@ -61,29 +61,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Async task class to get tasks
-     */
-    private class GetTasks extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-
-            DatabaseHandler db = new DatabaseHandler(MainActivity.this);
-            tasks = db.getAllTasks();
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            TasksAdapter adapter = new TasksAdapter(MainActivity.this, tasks);
-            taskListView.setAdapter(adapter);
-        }
-    }
-
-    /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
      */

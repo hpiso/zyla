@@ -35,41 +35,63 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-
+        // Manage Date popup (onclick and on focus change)
         EditText date = (EditText) findViewById(R.id.newDate);
+        date.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    newDate();
+                }
+            }
+
+        });
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Calendar now = Calendar.getInstance();
-                DatePickerDialog dpd = DatePickerDialog.newInstance(
-                        CreateTaskActivity.this,
-                        now.get(Calendar.YEAR),
-                        now.get(Calendar.MONTH),
-                        now.get(Calendar.DAY_OF_MONTH)
-                );
-                dpd.show(getFragmentManager(), "DateFragment");
-
+                newDate();
             }
         });
 
+
+        // Manage Time popup (onclick and on focus change)
         EditText time = (EditText) findViewById(R.id.newTime);
+        time.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    newTime();
+                }
+            }
+        });
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Calendar now = Calendar.getInstance();
-                TimePickerDialog dpd = TimePickerDialog.newInstance(
-                        CreateTaskActivity.this,
-                        now.get(Calendar.HOUR_OF_DAY),
-                        now.get(Calendar.MINUTE),
-                        true
-                );
-                dpd.show(getFragmentManager(), "TimeFragment");
-
+                newTime();
             }
         });
+    }
 
+    private void newDate() {
+        Calendar now = Calendar.getInstance();
+        DatePickerDialog dpd = DatePickerDialog.newInstance(
+                CreateTaskActivity.this,
+                now.get(Calendar.YEAR),
+                now.get(Calendar.MONTH),
+                now.get(Calendar.DAY_OF_MONTH)
+        );
+        dpd.show(getFragmentManager(), "DateFragment");
+    }
+
+    private void newTime() {
+        Calendar now = Calendar.getInstance();
+        TimePickerDialog dpd = TimePickerDialog.newInstance(
+                CreateTaskActivity.this,
+                now.get(Calendar.HOUR_OF_DAY),
+                now.get(Calendar.MINUTE),
+                true
+        );
+        dpd.show(getFragmentManager(), "TimeFragment");
     }
 
     /**
@@ -84,10 +106,18 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         Spinner spinnerCategory = (Spinner) findViewById(R.id.spinnerCategories);
         String category = spinnerCategory.getSelectedItem().toString();
 
+        EditText limitDateField = (EditText) findViewById(R.id.newDate);
+        String limitDate = limitDateField.getText().toString();
+
+        EditText limitTimeField = (EditText) findViewById(R.id.newTime);
+        String limitTime = limitTimeField.getText().toString();
+
         Task task = new Task();
         task.setName(taskName);
         task.setIsDone(0);
         task.setCategory(category);
+        task.setLimitDate(limitDate);
+        task.setLimitTime(limitTime);
 
         DatabaseHandler db = new DatabaseHandler(CreateTaskActivity.this);
         db.addTask(task);
@@ -97,13 +127,20 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date = "You picked the following date: "+dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        //String date = "You picked the following date: "+dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        EditText date = (EditText) findViewById(R.id.newDate);
+        date.setText(year + "-" + (monthOfYear+1) + "-" + dayOfMonth);
+
         System.out.println(date);
     }
 
     @Override
     public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
-        String time = "You picked the following time: "+hourOfDay+"h"+minute+"m"+second;
+        //String time = "You picked the following time: "+hourOfDay+"h"+minute+"m"+second;
+
+        EditText time = (EditText) findViewById(R.id.newTime);
+        time.setText(hourOfDay + ":" + minute);
+
         System.out.println(time);
     }
 }

@@ -97,11 +97,15 @@
             android:layout_width="296dp"
             android:layout_height="wrap_content"
             android:id="@+id/newDate"
+            android:inputType="none"
+            android:textIsSelectable="true"
             android:layout_gravity="center_horizontal" />
 
         <EditText
             android:layout_width="288dp"
             android:layout_height="wrap_content"
+            android:inputType="none"
+            android:textIsSelectable="true"
             android:id="@+id/newTime"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
