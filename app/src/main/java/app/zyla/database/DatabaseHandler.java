@@ -86,11 +86,60 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
-    // Getting All Contacts
     public ArrayList<Task> getAllTasks() {
         ArrayList<Task> taskList = new ArrayList<Task>();
         // Select All Query
         String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_TASKS;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Task task = new Task();
+                task.setId(Integer.parseInt(cursor.getString(0)));
+                task.setName(cursor.getString(1));
+                task.setIsDone(cursor.getInt(2));
+                task.setCategory(cursor.getString(3));
+                // Adding contact to list
+                taskList.add(task);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return taskList;
+    }
+
+    public ArrayList<Task> getAllTodoTasks() {
+        ArrayList<Task> taskList = new ArrayList<Task>();
+        // Select All Query
+        String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_TASKS + " where "+ KEY_IS_DONE +" = 0";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Task task = new Task();
+                task.setId(Integer.parseInt(cursor.getString(0)));
+                task.setName(cursor.getString(1));
+                task.setIsDone(cursor.getInt(2));
+                task.setCategory(cursor.getString(3));
+                // Adding contact to list
+                taskList.add(task);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return taskList;
+    }
+
+    public ArrayList<Task> getAllDoneTasks() {
+        ArrayList<Task> taskList = new ArrayList<Task>();
+        // Select All Query
+        String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_TASKS + " where "+ KEY_IS_DONE +" = 1";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
