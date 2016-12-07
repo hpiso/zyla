@@ -2,6 +2,7 @@ package app.zyla.activities;
 
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -129,9 +130,10 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         //String date = "You picked the following date: "+dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
         EditText date = (EditText) findViewById(R.id.newDate);
-        date.setText(year + "-" + (monthOfYear+1) + "-" + dayOfMonth);
+        String monthOfYearFormatted = String.format("%02d", (monthOfYear+1));
+        String dayOfMonthFormatted = String.format("%02d", dayOfMonth);
+        date.setText(year + "-" + monthOfYearFormatted + "-" + dayOfMonthFormatted);
 
-        System.out.println(date);
     }
 
     @Override
@@ -139,8 +141,10 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         //String time = "You picked the following time: "+hourOfDay+"h"+minute+"m"+second;
 
         EditText time = (EditText) findViewById(R.id.newTime);
-        time.setText(hourOfDay + ":" + minute);
+        String hourOfDayFormatted = String.format("%02d", hourOfDay);
+        String minuteFormatted = String.format("%02d", minute);
 
-        System.out.println(time);
+        time.setText(hourOfDayFormatted + ":" + minuteFormatted);
+
     }
 }

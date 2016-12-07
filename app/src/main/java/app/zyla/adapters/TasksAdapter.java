@@ -13,7 +13,14 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import app.zyla.R;
 import app.zyla.models.Category;
@@ -36,7 +43,11 @@ public class TasksAdapter extends ArrayAdapter<Task> {
         taskName.setText(task.getName());
 
         TextView taskInfoDate = (TextView) convertView.findViewById(R.id.infoDate);
-        taskInfoDate.setText("Todo before 12 dec at 20:00");
+        DateFormat formatter = new SimpleDateFormat("dd MMM");
+        java.sql.Timestamp ts = java.sql.Timestamp.valueOf(task.getLimitDate() + " 00:00:00");
+        String dateFormated = formatter.format(ts);
+
+        taskInfoDate.setText("Todo before "+ dateFormated + " at " + task.getLimitTime());
 
         LinearLayout imgLaout = (LinearLayout) convertView.findViewById(R.id.imgLayout);
         int resourceId = getContext().getResources().getIdentifier(Enum.valueOf(Category.class, task.getCategory()).toString(), "drawable",getContext().getPackageName());

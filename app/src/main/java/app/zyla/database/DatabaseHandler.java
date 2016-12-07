@@ -114,7 +114,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 task.setIsDone(cursor.getInt(2));
                 task.setCategory(cursor.getString(3));
                 task.setCreationDate(cursor.getString(4));
-                //task.setCreationDate(cursor.getString(4));
                 task.setLimitDate(cursor.getString(6));
                 task.setLimitTime(cursor.getString(7));
                 // Adding contact to list
@@ -144,7 +143,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 task.setName(cursor.getString(1));
                 task.setIsDone(cursor.getInt(2));
                 task.setCategory(cursor.getString(3));
-                // Adding contact to list
+                task.setCreationDate(cursor.getString(4));
+                task.setLimitDate(cursor.getString(6));
+                task.setLimitTime(cursor.getString(7));
                 taskList.add(task);
             } while (cursor.moveToNext());
         }
