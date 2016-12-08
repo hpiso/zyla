@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:text="@string/reg_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18dp"
+        android:layout_gravity="center"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1"
+        android:gravity="center"
+        android:background="#fff"
+        android:baselineAligned="true">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/co_register"
+            android:id="@+id/facebook_register"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="#fff"
+            android:onClick="Register"
+            android:textSize="20dp"
+            android:layout_weight="0.19"
+            app:srcCompat="@mipmap/ic_fb" />
+
+
+        <TextView
+            android:text="@string/reg_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/co_register"
+            android:id="@+id/google_register"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="#fff"
+            android:onClick="Register"
+            android:textSize="20dp"
+            android:layout_weight="0.19"
+            app:srcCompat="@mipmap/ic_google" />
+
+        <TextView
+            android:text="@string/reg_choice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:layout_weight="0.19" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/co_username"
+        android:ems="10"
+        android:id="@+id/register_username"
+        android:layout_marginLeft="40dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/co_password"
+        android:ems="10"
+        android:id="@+id/register_password"
+        android:layout_marginLeft="40dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/reg_conf_password"
+        android:ems="10"
+        android:id="@+id/register_password_conf"
+        android:layout_marginLeft="40dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/reg_age"
+        android:ems="10"
+        android:id="@+id/register_age"
+        android:layout_marginLeft="40dp"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp">
+
+        <RadioButton
+            android:text="@string/reg_gender_man"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gender_m" />
+
+        <RadioButton
+            android:text="@string/reg_gender_woman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gender_f"
+            android:layout_marginLeft="20dp"/>
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1"
+        android:gravity="center"
+        android:background="#fff"
+        android:baselineAligned="true">
+
+        <Button
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:text="@string/co_register"
+            android:id="@+id/sign_in"
+            android:background="@color/colorPrimary"
+            android:textColor="#fff"
+            android:onClick="SignIn"
+            android:textSize="20dp"
+            android:layout_weight="0.19" />
+    </LinearLayout>
+
+</LinearLayout>

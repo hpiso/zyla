@@ -11,10 +11,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import app.zyla.models.Task;
+import app.zyla.models.User;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "zyla";
 
     //Table Tasks
@@ -27,6 +28,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String KEY_IS_DONE_DATE = "is_done_date";
     public static final String KEY_LIMIT_DATE = "limit_date";
     public static final String KEY_LIMIT_TIME = "limit_time";
+
+    //Logged user table
+    public static final String TABLE_USER = "user";
+    public static final String KEY_PWD = "pwd";
+    public static final String KEY_AGE = "age";
+    public static final String KEY_GENDER = "gender";
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -41,6 +48,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_CATEGORY + " TEXT," + KEY_CREATION_DATE + " DATETIME," + KEY_IS_DONE_DATE + " DATETIME NULL,"
                 + KEY_LIMIT_DATE + " DATE," + KEY_LIMIT_TIME + " TIME" + ")";
         db.execSQL(CREATE_TASKS_TABLE);
+
+        String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
+                + KEY_PWD + " TEXT," + KEY_AGE + " INTEGER," + KEY_GENDER
+                + " INTEGER" + ")";
+        db.execSQL(CREATE_USER_TABLE);
     }
 
     /**
@@ -59,6 +72,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASKS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
 
         onCreate(db);
     }
@@ -154,4 +168,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return taskList;
     }
 
+    public void addUser(User user) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHandler.KEY_NAME, user.getName());
+        values.put(DatabaseHandler.KEY_PWD, user.getPwd());
+        values.put(DatabaseHandler.KEY_AGE, user.getAge());
+        values.put(DatabaseHandler.KEY_GENDER, user.getGender());
+
+        // Inserting Row
+        db.insert(DatabaseHandler.TABLE_USER, null, values);
+        db.close(); // Closing database connection
+    }
+
+    public User getUser() {
+        String query = "SELECT * FROM " + DatabaseHandler.TABLE_USER;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst())
+            return new User(cursor.getString(1), cursor.getString(2), cursor.getInt(3), cursor.getInt((4)));
+        else
+            return null;
+    }
+
+    public void dltUser() {
+        String query = "DELETE FROM " + DatabaseHandler.TABLE_USER;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(query);
+        db.close();
+    }
 }

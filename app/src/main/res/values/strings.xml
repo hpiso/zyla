@@ -17,6 +17,22 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <!--Connection-->
+    <string name="co_username">Username</string>
+    <string name="co_password">Password</string>
+    <string name="co_sign_in">Sign In</string>
+    <string name="co_register_info">Do not have an account yet?</string>
+    <string name="co_register">Register</string>
+    <string name="co_forgot_pass">Forgot password?</string>
+
+    <!--Register-->
+    <string name="reg_info">Choose the register mode</string>
+    <string name="reg_choice">Or</string>
+    <string name="reg_gender_man">Man</string>
+    <string name="reg_gender_woman">Woman</string>
+    <string name="reg_age">Age</string>
+    <string name="reg_conf_password">Confirm password</string>
+
 </resources>
 
 

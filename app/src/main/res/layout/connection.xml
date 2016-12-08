@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_snooze_black_24dp"
+        android:id="@+id/imageView2" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/co_username"
+        android:ems="10"
+        android:id="@+id/username"
+        android:layout_gravity="center"
+        android:selectAllOnFocus="false" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="@string/co_password"
+        android:ems="10"
+        android:id="@+id/password"
+        android:layout_gravity="center"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.10"
+        android:weightSum="1"
+        android:gravity="center"
+        android:background="#fff"
+        android:baselineAligned="true">
+
+        <Button
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:text="@string/co_sign_in"
+            android:id="@+id/sign_in"
+            android:background="@color/colorPrimary"
+            android:textColor="#fff"
+            android:onClick="SignIn"
+            android:textSize="20dp"
+            android:layout_weight="0.19" />
+    </LinearLayout>
+
+    <TextView
+        android:text="@string/co_register_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.10"
+        android:weightSum="1"
+        android:gravity="center"
+        android:background="#fff"
+        android:baselineAligned="true">
+
+        <Button
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:text="@string/co_register"
+            android:id="@+id/register"
+            android:background="@color/orangeColor"
+            android:textColor="#fff"
+            android:onClick="Register"
+            android:textSize="20dp"
+            android:layout_weight="0.19" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <TextView
+        android:text="@string/co_forgot_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_gravity="center"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</LinearLayout>
