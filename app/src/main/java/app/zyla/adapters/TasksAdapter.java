@@ -2,6 +2,7 @@ package app.zyla.adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,12 +25,21 @@ import java.util.Date;
 import java.util.Locale;
 
 import app.zyla.R;
+import app.zyla.listener.isDoneEventListener;
 import app.zyla.models.Category;
 import app.zyla.models.Task;
 
 public class TasksAdapter extends ArrayAdapter<Task> {
+
+    private ArrayList<Task> tasks;
+
     public TasksAdapter(Context context, ArrayList<Task> tasks) {
         super(context, 0, tasks);
+    }
+
+    public void swapTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+        notifyDataSetChanged();
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -53,15 +64,16 @@ public class TasksAdapter extends ArrayAdapter<Task> {
         int resourceId = getContext().getResources().getIdentifier(Enum.valueOf(Category.class, task.getCategory()).toString(), "drawable",getContext().getPackageName());
         imgLaout.setBackgroundResource(resourceId);
 
-        TextView isDone = (TextView) convertView.findViewById(R.id.isDone);
+        CheckBox isDone = (CheckBox) convertView.findViewById(R.id.isDone);
 
         if (task.getIsDone() == 0) {
-            isDone.setText("Todo");
-            isDone.setTextColor(Color.parseColor("#FFFF4043"));
+            isDone.setChecked(false);
         } else {
-            isDone.setText("Done");
-            isDone.setTextColor(Color.parseColor("#FF5B8E2C"));
+            isDone.setChecked(true);
         }
+
+        isDone.setOnCheckedChangeListener(new isDoneEventListener(task, getContext(), this) {
+        });
 
         return convertView;
     }

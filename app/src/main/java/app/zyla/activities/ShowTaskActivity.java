@@ -31,8 +31,8 @@ public class ShowTaskActivity extends AppCompatActivity {
             onOffSwitch.setChecked(true);
         }
 
-        onOffSwitch.setOnCheckedChangeListener(new isDoneEventListener(task, ShowTaskActivity.this) {
-        });
+//        onOffSwitch.setOnCheckedChangeListener(new isDoneEventListener(task, ShowTaskActivity.this) {
+//        });
 
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.CompoundButton;
 
 import app.zyla.activities.ShowTaskActivity;
+import app.zyla.adapters.TasksAdapter;
 import app.zyla.database.DatabaseHandler;
 import app.zyla.models.Task;
 
@@ -14,10 +15,12 @@ public class isDoneEventListener implements CompoundButton.OnCheckedChangeListen
 
     private Task task;
     private Context context;
+    private TasksAdapter adapter;
 
-    public isDoneEventListener(Task task, Context context) {
+    public isDoneEventListener(Task task, Context context, TasksAdapter adapter) {
         this.task = task;
         this.context = context;
+        this.adapter = adapter;
     }
 
     @Override
@@ -33,5 +36,11 @@ public class isDoneEventListener implements CompoundButton.OnCheckedChangeListen
 
         DatabaseHandler db = new DatabaseHandler(this.context);
         db.updateTask(task);
+
+        adapter.clear();
+        adapter.addAll(db.getAllTodoTasks());
+        adapter.notifyDataSetChanged();
+
+
     }
 }

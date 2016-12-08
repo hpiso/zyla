@@ -26,6 +26,7 @@ import app.zyla.models.Task;
 public class StateFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     private ArrayList<Task> tasks;
+    private TasksAdapter adapter;
 
     public StateFragment() {
         // Required empty public constructor
@@ -65,6 +66,7 @@ public class StateFragment extends Fragment {
 
         TasksAdapter adapter = new TasksAdapter(getContext(), tasks);
         taskListView.setAdapter(adapter);
+        taskListView.setItemsCanFocus(true);
 
         taskListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
