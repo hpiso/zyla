@@ -25,21 +25,18 @@ import java.util.Date;
 import java.util.Locale;
 
 import app.zyla.R;
+import app.zyla.fragments.StateFragment;
 import app.zyla.listener.isDoneEventListener;
 import app.zyla.models.Category;
 import app.zyla.models.Task;
 
 public class TasksAdapter extends ArrayAdapter<Task> {
 
-    private ArrayList<Task> tasks;
+    private StateFragment stateFragment;
 
-    public TasksAdapter(Context context, ArrayList<Task> tasks) {
+    public TasksAdapter(Context context, ArrayList<Task> tasks, StateFragment stateFragment) {
         super(context, 0, tasks);
-    }
-
-    public void swapTasks(ArrayList<Task> tasks) {
-        this.tasks = tasks;
-        notifyDataSetChanged();
+        this.stateFragment = stateFragment;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -72,7 +69,7 @@ public class TasksAdapter extends ArrayAdapter<Task> {
             isDone.setChecked(true);
         }
 
-        isDone.setOnCheckedChangeListener(new isDoneEventListener(task, getContext(), this) {
+        isDone.setOnCheckedChangeListener(new isDoneEventListener(task, getContext(), stateFragment) {
         });
 
         return convertView;

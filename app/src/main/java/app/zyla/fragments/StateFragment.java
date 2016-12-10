@@ -1,10 +1,15 @@
 package app.zyla.fragments;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,18 +58,16 @@ public class StateFragment extends Fragment {
             case 1: //todos-tasks
 
                 tasks = db.getAllTodoTasks();
-
                 break;
 
             case 2: //done-tasks
 
                 tasks = db.getAllDoneTasks();
-
                 break;
 
         }
 
-        TasksAdapter adapter = new TasksAdapter(getContext(), tasks);
+        TasksAdapter adapter = new TasksAdapter(getContext(), tasks, this);
         taskListView.setAdapter(adapter);
         taskListView.setItemsCanFocus(true);
 
@@ -77,7 +80,6 @@ public class StateFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
 
         return rootView;
     }
