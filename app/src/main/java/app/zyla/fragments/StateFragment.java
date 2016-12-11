@@ -1,7 +1,9 @@
 package app.zyla.fragments;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,16 +18,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import app.zyla.R;
+import app.zyla.activities.AdviseActivity;
 import app.zyla.activities.CreateTaskActivity;
 import app.zyla.activities.ShowTaskActivity;
 import app.zyla.adapters.TasksAdapter;
 import app.zyla.database.DatabaseHandler;
+import app.zyla.listener.DeleteLongClickEventListener;
 import app.zyla.models.Task;
 
 public class StateFragment extends Fragment {
@@ -79,6 +84,9 @@ public class StateFragment extends Fragment {
                 intent.putExtra("taskToShow", task);
                 startActivity(intent);
             }
+        });
+
+        taskListView.setOnItemLongClickListener(new DeleteLongClickEventListener(this) {
         });
 
         return rootView;

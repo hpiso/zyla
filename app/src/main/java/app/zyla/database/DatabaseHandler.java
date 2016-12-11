@@ -77,7 +77,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    // Adding new contact
+    // Adding new task
     public void addTask(Task task) {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -95,6 +95,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.close(); // Closing database connection
     }
 
+
     // Update task
     public void updateTask(Task task) {
 
@@ -108,6 +109,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.update(DatabaseHandler.TABLE_TASKS, values, KEY_ID + "=" + task.getId(), null);
         db.close(); // Closing database connection
     }
+
+    // Delete task
+    public void deleteTask(Task task) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TASKS, KEY_ID + "=" + task.getId(), null);
+        db.close(); // Closing database connection
+        System.out.println("DELETEDDDD");
+    }
+
 
     public ArrayList<Task> getAllTodoTasks() {
         ArrayList<Task> taskList = new ArrayList<Task>();
