@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import app.zyla.R;
 import app.zyla.activities.MainActivity;
@@ -26,6 +27,7 @@ public class isDoneEventListener implements CompoundButton.OnCheckedChangeListen
     private Task task;
     private Context context;
     private StateFragment stateFragment;
+    private String toastMessage;
 
 
     public isDoneEventListener(Task task, Context context, StateFragment stateFragment) {
@@ -41,9 +43,10 @@ public class isDoneEventListener implements CompoundButton.OnCheckedChangeListen
 
         if (isChecked) {
             task.setIsDone(1);
-
+            toastMessage = "Task " + task.getName() + " sets as Done";
         } else {
             task.setIsDone(0);
+            toastMessage = "Task " + task.getName() + " sets as Todo";
         }
 
         task.setIsDoneDate(Task.getDateTime());
@@ -51,6 +54,9 @@ public class isDoneEventListener implements CompoundButton.OnCheckedChangeListen
 
         FragmentTransaction ft = stateFragment.getFragmentManager().beginTransaction();
         ft.detach(stateFragment).attach(stateFragment).commit();
+
+        Toast toast = Toast.makeText(stateFragment.getContext(), toastMessage, Toast.LENGTH_LONG);
+        toast.show();
 
     }
 
