@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import app.zyla.R;
 import app.zyla.activities.AdviseActivity;
+import app.zyla.activities.MapsActivity;
 import app.zyla.database.DatabaseHandler;
 import app.zyla.fragments.StateFragment;
 import app.zyla.models.Task;
@@ -39,7 +40,7 @@ public class DeleteLongClickEventListener implements AdapterView.OnItemLongClick
         advise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(stateFragment.getContext(), AdviseActivity.class);
+                Intent intent = new Intent(stateFragment.getContext(), MapsActivity.class);
                 stateFragment.startActivity(intent);
             }
         });

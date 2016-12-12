@@ -32,6 +32,7 @@
     <string name="reg_gender_woman">Woman</string>
     <string name="reg_age">Age</string>
     <string name="reg_conf_password">Confirm password</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>
 
