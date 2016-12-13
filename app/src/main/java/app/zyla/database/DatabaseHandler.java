@@ -28,6 +28,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String KEY_IS_DONE_DATE = "is_done_date";
     public static final String KEY_LIMIT_DATE = "limit_date";
     public static final String KEY_LIMIT_TIME = "limit_time";
+    public static final String KEY_MOTIVATION = "motivation";
 
     //Logged user table
     public static final String TABLE_USER = "user";
@@ -46,7 +47,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_TASKS_TABLE = "CREATE TABLE " + TABLE_TASKS + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT," + KEY_IS_DONE + " INTEGER DEFAULT 0,"
                 + KEY_CATEGORY + " TEXT," + KEY_CREATION_DATE + " DATETIME," + KEY_IS_DONE_DATE + " DATETIME NULL,"
-                + KEY_LIMIT_DATE + " DATE," + KEY_LIMIT_TIME + " TIME" + ")";
+                + KEY_LIMIT_DATE + " DATE," + KEY_LIMIT_TIME + " TIME," + KEY_MOTIVATION + " INTEGER" + ")";
         db.execSQL(CREATE_TASKS_TABLE);
 
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
@@ -89,6 +90,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(DatabaseHandler.KEY_CREATION_DATE, task.getCreationDate());
         values.put(DatabaseHandler.KEY_LIMIT_DATE, task.getLimitDate());
         values.put(DatabaseHandler.KEY_LIMIT_TIME, task.getLimitTime());
+        values.put(DatabaseHandler.KEY_MOTIVATION, task.getMotivation());
 
         // Inserting Row
         db.insert(DatabaseHandler.TABLE_TASKS, null, values);
@@ -115,7 +117,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_TASKS, KEY_ID + "=" + task.getId(), null);
         db.close(); // Closing database connection
-        System.out.println("DELETEDDDD");
     }
 
 
@@ -140,6 +141,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 task.setCreationDate(cursor.getString(4));
                 task.setLimitDate(cursor.getString(6));
                 task.setLimitTime(cursor.getString(7));
+                task.setMotivation(cursor.getInt(8));
                 // Adding contact to list
                 taskList.add(task);
             } while (cursor.moveToNext());
@@ -170,6 +172,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 task.setCreationDate(cursor.getString(4));
                 task.setLimitDate(cursor.getString(6));
                 task.setLimitTime(cursor.getString(7));
+                task.setMotivation(cursor.getInt(8));
                 taskList.add(task);
             } while (cursor.moveToNext());
         }

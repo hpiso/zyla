@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -33,7 +34,44 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         setContentView(R.layout.create_task);
 
         SeekBar motivationBar = (SeekBar) findViewById(R.id.motivationBar);
-        motivationBar.setMax(5);
+        motivationBar.setMax(4);
+        motivationBar.setProgress(1);
+
+        motivationBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                TextView motivationText = (TextView) findViewById(R.id.motivationText);
+
+                switch (progress) {
+                    case 0:
+                        motivationText.setText("I won't do it");
+                        break;
+                    case 1:
+                        motivationText.setText("I don't want to do it");
+                        break;
+                    case 2:
+                        motivationText.setText("I don't really want to do it");
+                        break;
+                    case 3:
+                        motivationText.setText("I'm OK to do it");
+                        break;
+                    case 4:
+                        motivationText.setText("For sure I'm gonna do it");
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerCategories);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -123,7 +161,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
 
         if (spinnerCategory.getSelectedItemPosition() == 0 || taskName.isEmpty()
                 || limitDate.isEmpty() || limitTime.isEmpty()) {
-            Toast.makeText(getApplicationContext(),"All fields are required" ,Toast.LENGTH_LONG)
+            Toast.makeText(getApplicationContext(), "All fields are required", Toast.LENGTH_LONG)
                     .show();
         } else {
             Task task = new Task();
@@ -132,6 +170,7 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
             task.setCategory(category);
             task.setLimitDate(limitDate);
             task.setLimitTime(limitTime);
+            task.setMotivation(motivation);
 
             DatabaseHandler db = new DatabaseHandler(CreateTaskActivity.this);
             db.addTask(task);

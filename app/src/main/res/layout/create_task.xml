@@ -35,6 +35,21 @@
             android:layout_gravity="center"
             android:layout_marginBottom="40dp" />
 
+        <TextView
+            android:text="What's your motivation for this task ? (slide on bar)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:paddingLeft="10dp" />
+
+        <TextView
+            android:text="I don't want to do it"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/motivationText"
+            android:paddingLeft="10dp"
+            android:textColor="@color/strongGreyColor" />
+
         <SeekBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,7 +72,7 @@
             android:padding="20dp">
 
             <EditText
-                android:layout_width="296dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/newDate"
                 android:inputType="none"
@@ -67,7 +82,7 @@
                 android:hint="limit date" />
 
             <EditText
-                android:layout_width="288dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
                 android:textIsSelectable="true"

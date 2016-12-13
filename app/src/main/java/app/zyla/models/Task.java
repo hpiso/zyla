@@ -15,6 +15,7 @@ public class Task implements Serializable{
     private String isDoneDate;
     private String limitDate;
     private String limitTime;
+    private Integer motivation;
 
     public Task() {
         this.creationDate = getDateTime();
@@ -88,5 +89,13 @@ public class Task implements Serializable{
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().getTime());
 
         return timeStamp;
+    }
+
+    public Integer getMotivation() {
+        return motivation;
+    }
+
+    public void setMotivation(Integer motivation) {
+        this.motivation = motivation;
     }
 }

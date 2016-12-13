@@ -12,6 +12,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import app.zyla.adapters.SectionsPagerAdapter;
 import app.zyla.R;
+import app.zyla.database.DatabaseHandler;
 import app.zyla.models.Task;
 
 public class MainActivity extends AppCompatActivity {
