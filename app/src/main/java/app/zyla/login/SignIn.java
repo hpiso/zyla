@@ -58,7 +58,7 @@ public class SignIn extends AsyncTask<String, Void, String> {
         try
         {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://185.28.20.74/getuser.php");
+            HttpPost httpPost = new HttpPost("http://127.0.0.1:8081/getuser.php");
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = httpClient.execute(httpPost);
             HttpEntity entity = response.getEntity();

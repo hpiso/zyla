@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import app.zyla.models.Task;
+import app.zyla.models.Trophy;
 import app.zyla.models.User;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -36,6 +37,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String KEY_AGE = "age";
     public static final String KEY_GENDER = "gender";
 
+    //Trophy table
+    public static final String TABLE_TROPHY = "trophy";
+    public static final String KEY_TITLE = "title";
+    public static final String KEY_DESCRIPTION = "description";
+    public static final String KEY_IMAGE = "image";
+    public static final String KEY_DATE = "date";
+
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -55,6 +63,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_PWD + " TEXT," + KEY_AGE + " INTEGER," + KEY_GENDER
                 + " INTEGER" + ")";
         db.execSQL(CREATE_USER_TABLE);
+
+        String CREATE_TROPHY_TABLE = "CREATE TABLE " + TABLE_TROPHY + "("
+                + KEY_ID + "INTEGER PRIMARY KEY," + KEY_TITLE + " TEXT," + KEY_DESCRIPTION
+                + " TEXT," + KEY_IMAGE + " TEXT," + KEY_DATE + " DATETIME)";
+        db.execSQL(CREATE_TROPHY_TABLE);
     }
 
     /**
@@ -213,5 +226,35 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(query);
         db.close();
+    }
+
+    public void addTrophy(Trophy trophy) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHandler.KEY_TITLE, trophy.getTitle());
+        values.put(DatabaseHandler.KEY_DESCRIPTION, trophy.getDescription());
+        values.put(DatabaseHandler.KEY_IMAGE, trophy.getImg());
+        values.put(DatabaseHandler.KEY_DATE, trophy.getDate());
+
+        db.insert(DatabaseHandler.TABLE_TROPHY, null, values);
+        db.close();
+    }
+
+    public ArrayList<Trophy> getTrophies() {
+        ArrayList<Trophy> trophies = new ArrayList<>();
+        String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_TROPHY;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Trophy trophy = new Trophy(cursor.getString(1), cursor.getString(2), cursor.getString(3),
+                        cursor.getString(4));
+                trophies.add(trophy);
+            } while (cursor.moveToNext());
+        }
+        return trophies;
     }
 }
