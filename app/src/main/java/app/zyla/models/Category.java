@@ -7,8 +7,8 @@ public enum Category {
 
     Sport("sport"),
     Grocery("grocery"),
-    Study("sport"),
-    Cleaning("sport");
+    Study("study"),
+    Cleaning("cleaning");
 
     private String img = "";
 
