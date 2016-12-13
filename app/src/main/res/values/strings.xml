@@ -8,6 +8,7 @@
     <string name="create_button">ADD TASK</string>
 
     <string-array name="task_categories">
+        <item>Select a category...</item>
         <item>Sport</item>
         <item>Grocery</item>
         <item>Study</item>

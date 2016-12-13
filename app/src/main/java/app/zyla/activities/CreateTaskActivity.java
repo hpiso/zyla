@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
@@ -29,6 +31,9 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_task);
+
+        SeekBar motivationBar = (SeekBar) findViewById(R.id.motivationBar);
+        motivationBar.setMax(5);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerCategories);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -113,17 +118,27 @@ public class CreateTaskActivity extends AppCompatActivity implements DatePickerD
         EditText limitTimeField = (EditText) findViewById(R.id.newTime);
         String limitTime = limitTimeField.getText().toString();
 
-        Task task = new Task();
-        task.setName(taskName);
-        task.setIsDone(0);
-        task.setCategory(category);
-        task.setLimitDate(limitDate);
-        task.setLimitTime(limitTime);
+        SeekBar motivationBar = (SeekBar) findViewById(R.id.motivationBar);
+        Integer motivation = motivationBar.getProgress();
 
-        DatabaseHandler db = new DatabaseHandler(CreateTaskActivity.this);
-        db.addTask(task);
+        if (spinnerCategory.getSelectedItemPosition() == 0 || taskName.isEmpty()
+                || limitDate.isEmpty() || limitTime.isEmpty()) {
+            Toast.makeText(getApplicationContext(),"All fields are required" ,Toast.LENGTH_LONG)
+                    .show();
+        } else {
+            Task task = new Task();
+            task.setName(taskName);
+            task.setIsDone(0);
+            task.setCategory(category);
+            task.setLimitDate(limitDate);
+            task.setLimitTime(limitTime);
 
-        startActivity(intent);
+            DatabaseHandler db = new DatabaseHandler(CreateTaskActivity.this);
+            db.addTask(task);
+
+            startActivity(intent);
+        }
+
     }
 
     @Override

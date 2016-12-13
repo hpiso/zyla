@@ -9,50 +9,73 @@
 
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:baselineAligned="false"
+        android:weightSum="1"
+        android:padding="20dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/taskDescription"
+            android:layout_gravity="center_horizontal"
+            android:inputType="textCapSentences|textAutoCorrect"
+            android:lines="2"
+            android:maxLines="3"
+            android:hint="Task name"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="30dp" />
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinnerCategories"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp" />
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/motivationBar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:id="@+id/textParentLayout"
-        android:layout_weight="0.05">
+        android:id="@+id/textParentLayout">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
             android:id="@+id/left"
             android:gravity="center"
             android:padding="20dp">
 
             <EditText
-                android:layout_width="fill_parent"
+                android:layout_width="296dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/taskDescription"
+                android:id="@+id/newDate"
+                android:inputType="none"
+                android:textIsSelectable="true"
                 android:layout_gravity="center_horizontal"
-                android:textColor="#fff"
-                android:inputType="textCapSentences|textAutoCorrect"
-                android:lines="2"
-                android:maxLines="3" />
-        </LinearLayout>
+                android:layout_weight="1"
+                android:hint="limit date" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/right">
-
-            <Button
-                android:layout_width="wrap_content"
+            <EditText
+                android:layout_width="288dp"
                 android:layout_height="wrap_content"
-                android:text="Add picture"
-                android:id="@+id/button"
+                android:inputType="none"
+                android:textIsSelectable="true"
+                android:id="@+id/newTime"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="0.21"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_weight="1"
+                android:hint="limit hour" />
+
         </LinearLayout>
 
         <!--<TextView-->
@@ -67,62 +90,18 @@
 
     </LinearLayout>
 
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="88dp"
-        android:baselineAligned="false"
-        android:background="?attr/colorPrimary"
-        android:weightSum="1"
-        android:gravity="center_vertical"
-        android:padding="20dp">
-
-        <Spinner
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinnerCategories"
-            android:layout_weight="0.49"
-            android:layout_gravity="center" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:weightSum="1"
-        android:gravity="center">
-
-        <EditText
-            android:layout_width="296dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/newDate"
-            android:inputType="none"
-            android:textIsSelectable="true"
-            android:layout_gravity="center_horizontal" />
-
-        <EditText
-            android:layout_width="288dp"
-            android:layout_height="wrap_content"
-            android:inputType="none"
-            android:textIsSelectable="true"
-            android:id="@+id/newTime"
-            android:layout_gravity="center_horizontal" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_weight="0.30"
         android:weightSum="1"
         android:gravity="center"
-        android:background="#fff"
         android:baselineAligned="true">
 
         <Button
-            android:layout_width="308dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create Task"
             android:id="@+id/button2"
@@ -131,6 +110,7 @@
             android:onClick="createTask"
             android:textSize="20dp"
             android:layout_weight="0.19" />
+
     </LinearLayout>
 
 
