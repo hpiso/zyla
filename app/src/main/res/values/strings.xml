@@ -15,6 +15,21 @@
         <item>Cleaning</item>
     </string-array>
 
+    <string-array name="famous_sport_citations">
+        <item>"Quand j’ai arrêté de chercher des excuses, j’ai trouvé des résultats"</item>
+        <item>"L’endurance est l’une des choses les plus difficiles. Mais ceux qui endurent finissent par gagner" - Bouddha</item>
+        <item>"La motivation vous sert de départ. L'habitude vous fait continuer."  - Jim Ryun</item>
+        <item>"Celui qui n'a pas d'objectifs ne risque pas de les atteindre."  - Sun Tzu</item>
+        <item>"Se donner du mal pour les petites choses, c’est parvenir aux grandes avec le temps." - Samuel Beckett</item>
+        <item>"Si tu abandonnes une fois, cela peut devenir une habitude. N’abandonne jamais."</item>
+        <item>"Les gagnants trouvent des moyens, les perdants des excuses…" - F. D. Roosevelt</item>
+        <item>"Une des clés du succès est la confiance en soi. Une des clés de la confiance en soi est la préparation." - Arthur Ashed</item>
+        <item>"Le sport va chercher la peur pour la dominer, la fatigue pour en triompher, la difficulté pour la vaincre." - Pierre de Coubertin</item>
+        <item>"En sport, dès qu’on s’arrête, on régresse."  - Marc Pajot</item>
+        <item>"Le sport ne forge pas le caractère. Il le révèle." - Heywood Hale Broun</item>
+        <item>"Le sport est dépassement de soi. Le sport est école de vie." - Aimé Jacquet </item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

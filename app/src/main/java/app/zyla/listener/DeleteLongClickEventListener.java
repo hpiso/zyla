@@ -11,6 +11,7 @@ import android.widget.Toast;
 import app.zyla.R;
 import app.zyla.activities.AdviseActivity;
 import app.zyla.activities.MapsActivity;
+import app.zyla.activities.SportAdivseActivity;
 import app.zyla.database.DatabaseHandler;
 import app.zyla.fragments.StateFragment;
 import app.zyla.models.Task;
@@ -21,6 +22,7 @@ import app.zyla.models.Task;
 public class DeleteLongClickEventListener implements AdapterView.OnItemLongClickListener {
 
     private StateFragment stateFragment;
+    private Intent intent;
 
     public DeleteLongClickEventListener(StateFragment stateFragment) {
         this.stateFragment = stateFragment;
@@ -40,7 +42,16 @@ public class DeleteLongClickEventListener implements AdapterView.OnItemLongClick
         advise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(stateFragment.getContext(), MapsActivity.class);
+
+                switch (task.getCategory()) {
+                    case "Sport":
+                        intent = new Intent(stateFragment.getContext(), SportAdivseActivity.class);
+                        break;
+                    case "Grocery":
+                        intent = new Intent(stateFragment.getContext(), MapsActivity.class);
+                        break;
+                }
+
                 stateFragment.startActivity(intent);
             }
         });
