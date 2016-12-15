@@ -52,11 +52,8 @@ public class ShowTaskActivity extends AppCompatActivity {
         TextView taskToShow = (TextView) findViewById(R.id.name);
         taskToShow.setText(task.getName());
 
-
-
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setMax(100);
-        pb.setProgress(10);
 
         SimpleDateFormat dateFormat =
                 new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
