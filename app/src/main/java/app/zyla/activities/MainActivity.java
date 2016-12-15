@@ -35,6 +35,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        FloatingActionButton disc = (FloatingActionButton) findViewById(R.id.disconnect);
+        disc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Connection.class);
+                DatabaseHandler dbhandler = new DatabaseHandler(MainActivity.this);
+                dbhandler.dltUser();
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

@@ -5,20 +5,20 @@ package app.zyla.models;
  */
 
 public class User {
-    private String name;
+    private String email;
     private String pwd;
     private int age;
     private int gender;
 
-    public User(String name, String pwd, int age, int gender) {
-        this.name = name;
+    public User(String email, String pwd, int age, int gender) {
+        this.email = email;
         this.pwd = pwd;
         this.age = age;
         this.gender = gender;
     }
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
     public String getPwd() {
@@ -33,8 +33,8 @@ public class User {
         return gender;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPwd(String pwd) {

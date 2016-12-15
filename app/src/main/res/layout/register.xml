@@ -79,9 +79,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="@string/co_username"
+        android:hint="@string/co_email"
         android:ems="10"
-        android:id="@+id/register_username"
+        android:id="@+id/register_email"
         android:layout_marginLeft="40dp"/>
 
     <EditText
@@ -116,6 +116,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp">
+        
+        <RadioGroup
+            android:id="@+id/register_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
         <RadioButton
             android:text="@string/reg_gender_man"
@@ -129,6 +134,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/gender_f"
             android:layout_marginLeft="20dp"/>
+
+        </RadioGroup>
 
     </LinearLayout>
 
@@ -153,7 +160,7 @@
             android:id="@+id/sign_in"
             android:background="@color/colorPrimary"
             android:textColor="#fff"
-            android:onClick="SignIn"
+            android:onClick="Inscription"
             android:textSize="20dp"
             android:layout_weight="0.19" />
     </LinearLayout>

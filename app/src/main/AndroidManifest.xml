@@ -21,15 +21,19 @@
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".activities.ShowTaskActivity" />
+        <activity android:name=".activities.CreateTaskActivity" />
+        <activity android:name=".activities.AdviseActivity" />
+        <activity
+            android:name=".activities.Connection">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ShowTaskActivity" />
-        <activity android:name=".activities.CreateTaskActivity" />
-        <activity android:name=".activities.AdviseActivity" />
+        <activity android:name=".activities.Register" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

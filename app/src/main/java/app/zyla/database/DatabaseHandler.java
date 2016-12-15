@@ -33,6 +33,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Logged user table
     public static final String TABLE_USER = "user";
+    public static final String KEY_EMAIL = "email";
     public static final String KEY_PWD = "pwd";
     public static final String KEY_AGE = "age";
     public static final String KEY_GENDER = "gender";
@@ -59,7 +60,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_TASKS_TABLE);
 
         String CREATE_USER_TABLE = "CREATE TABLE " + TABLE_USER + "("
-                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
+                + KEY_ID + " INTEGER PRIMARY KEY," + KEY_EMAIL + " TEXT,"
                 + KEY_PWD + " TEXT," + KEY_AGE + " INTEGER," + KEY_GENDER
                 + " INTEGER" + ")";
         db.execSQL(CREATE_USER_TABLE);
@@ -198,7 +199,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(DatabaseHandler.KEY_NAME, user.getName());
+        values.put(DatabaseHandler.KEY_EMAIL, user.getEmail());
         values.put(DatabaseHandler.KEY_PWD, user.getPwd());
         values.put(DatabaseHandler.KEY_AGE, user.getAge());
         values.put(DatabaseHandler.KEY_GENDER, user.getGender());

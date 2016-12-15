@@ -46,4 +46,14 @@
         app:backgroundTint="@color/orangeColor"
         android:src="@drawable/ic_add_white_24dp" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/disconnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="false"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="#830202"
+        android:src="@drawable/ic_add_white_24dp" />
+
 </RelativeLayout>

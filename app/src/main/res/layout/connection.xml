@@ -23,9 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="@string/co_username"
+        android:hint="@string/co_email"
         android:ems="10"
-        android:id="@+id/username"
+        android:id="@+id/email_co"
         android:layout_gravity="center"
         android:selectAllOnFocus="false" />
 

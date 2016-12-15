@@ -1,5 +1,6 @@
 package app.zyla.login;
 import android.os.AsyncTask;
+import android.os.SystemClock;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -54,11 +55,12 @@ public class SignIn extends AsyncTask<String, Void, String> {
         ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
         nameValuePairs.add(new BasicNameValuePair("email", email));
         nameValuePairs.add(new BasicNameValuePair("password", password));
+        System.err.println("##" + email + "##" + password + "##");
 
         try
         {
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost("http://127.0.0.1:8081/getuser.php");
+            HttpPost httpPost = new HttpPost("http://app-zyla.esy.es/getuser.php");
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = httpClient.execute(httpPost);
             HttpEntity entity = response.getEntity();
@@ -91,8 +93,8 @@ public class SignIn extends AsyncTask<String, Void, String> {
             for (int i = 0; i < jsonArray.length(); ++i)
             {
                 JSONObject json_data = jsonArray.getJSONObject(i);
-                Log.i("log_tag", "Id user: " + json_data.getInt("id") + ", Name user: " + json_data.getString("firstname"));
-                res += json_data.getString("firstname");
+                res += json_data.getString("birthdate") + "\n"
+                        + json_data.getInt("gender");
             }
         }
         catch (Exception e)
@@ -100,16 +102,5 @@ public class SignIn extends AsyncTask<String, Void, String> {
             Log.e("log_tag", "Error parsing data " + e.toString());
         }
         return res;
-    }
-
-    public URI setUriPort(URI uri, int port)
-    {
-        try {
-            URI newUri = new URI(uri.getScheme(), uri.getUserInfo(), uri.getHost(), port, uri.getPath(), uri.getQuery(), uri.getFragment());
-            return newUri;
-        } catch (URISyntaxException e) {
-            Log.e("URI port failed:", e.toString());
-            return uri;
-        }
     }
 }
