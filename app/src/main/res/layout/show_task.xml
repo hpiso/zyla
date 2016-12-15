@@ -25,7 +25,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:weightSum="1">
 
             <TextView
                 android:id="@+id/name"
@@ -37,7 +38,27 @@
                 android:text="Cleaning"
                 android:paddingLeft="20dp"
                 android:elevation="19dp"
-                android:paddingTop="20dp" />
+                android:paddingTop="20dp"
+                android:layout_marginBottom="50dp" />
+
+            <TextView
+                android:text="80%"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/task_evolution"
+                android:textSize="42sp"
+                android:textAlignment="center" />
+
+            <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:elevation="20dp"
+                android:layout_weight="0.06"
+                android:scaleY="2" />
         </LinearLayout>
 
     </LinearLayout>

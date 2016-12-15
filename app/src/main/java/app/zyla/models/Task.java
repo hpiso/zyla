@@ -86,9 +86,11 @@ public class Task implements Serializable{
     }
 
     public static String getDateTime() {
-        String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(Calendar.getInstance().getTime());
+        SimpleDateFormat dateFormat =
+                new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.getDefault());
+        java.util.Date date = new java.util.Date();
 
-        return timeStamp;
+        return dateFormat.format(date);
     }
 
     public Integer getMotivation() {
