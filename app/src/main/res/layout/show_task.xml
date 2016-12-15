@@ -16,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="199dp"
             android:elevation="11dp"
-            android:background="@drawable/bg_sport"
             android:gravity="bottom"
             android:id="@+id/layout_bg">
 
@@ -48,6 +47,14 @@
                 android:id="@+id/task_evolution"
                 android:textSize="42sp"
                 android:textAlignment="center" />
+
+            <TextView
+                android:text="Percentage of time used"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3"
+                android:textAlignment="center"
+                android:textSize="14sp" />
 
             <ProgressBar
                 style="?android:attr/progressBarStyleHorizontal"

@@ -101,8 +101,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(DatabaseHandler.KEY_NAME, task.getName());
         values.put(DatabaseHandler.KEY_IS_DONE, task.getIsDone());
         values.put(DatabaseHandler.KEY_CATEGORY, task.getCategory());
-        //values.put(DatabaseHandler.KEY_CREATION_DATE, task.getCreationDate());
-        values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-10 00:00:00");
+        values.put(DatabaseHandler.KEY_CREATION_DATE, task.getCreationDate());
+        //values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-10 00:00:00"); JUST FOR TESTTING - TO REMOVE
         values.put(DatabaseHandler.KEY_LIMIT_DATE, task.getLimitDate());
         values.put(DatabaseHandler.KEY_LIMIT_TIME, task.getLimitTime());
         values.put(DatabaseHandler.KEY_MOTIVATION, task.getMotivation());
