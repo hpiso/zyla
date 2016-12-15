@@ -2,9 +2,11 @@ package app.zyla.activities;
 
 import android.app.LauncherActivity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -14,25 +16,35 @@ import app.zyla.models.Task;
 
 public class ShowTaskActivity extends AppCompatActivity {
 
+    private Drawable bg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Task task = (Task) getIntent().getSerializableExtra("taskToShow");
         setContentView(R.layout.show_task);
 
-        TextView taskToShow = (TextView) findViewById(R.id.name);
-        taskToShow.setText(task.getName());
+        LinearLayout layout = (LinearLayout) findViewById(R.id.layout_bg);
 
-        Switch onOffSwitch = (Switch)  findViewById(R.id.isDone);
-
-        if (task.getIsDone() == 0) {
-            onOffSwitch.setChecked(false);
-        } else {
-            onOffSwitch.setChecked(true);
+        switch (task.getCategory()) {
+            case "Sport":
+                bg = getResources().getDrawable( R.drawable.bg_sport);
+                break;
+            case "Study":
+                bg = getResources().getDrawable( R.drawable.bg_study);
+                break;
+            case "Cleaning":
+                bg = getResources().getDrawable( R.drawable.bg_cleaning);
+                break;
+            case "Grocery":
+                bg = getResources().getDrawable( R.drawable.bg_grocery);
+                break;
         }
 
-//        onOffSwitch.setOnCheckedChangeListener(new isDoneEventListener(task, ShowTaskActivity.this) {
-//        });
+        layout.setBackground(bg);
+
+        TextView taskToShow = (TextView) findViewById(R.id.name);
+        taskToShow.setText(task.getName());
 
     }
 }
