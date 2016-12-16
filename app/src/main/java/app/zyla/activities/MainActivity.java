@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.score_rewards) {
-            System.out.println("rewards");
-            return true;
+            Intent intent = new Intent(MainActivity.this, ScoreActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
