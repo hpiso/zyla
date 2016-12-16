@@ -40,6 +40,7 @@ public class Inscription extends AsyncTask<String, Void, String> {
         nameValuePairs.add(new BasicNameValuePair("email", email));
         nameValuePairs.add(new BasicNameValuePair("password", password));
         nameValuePairs.add(new BasicNameValuePair("type_identification", type));
+        InputStream is = null;
 
         try
         {
@@ -47,7 +48,17 @@ public class Inscription extends AsyncTask<String, Void, String> {
             HttpPost httpPost = new HttpPost("http://app-zyla.esy.es/adduser.php");
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
             HttpResponse response = httpClient.execute(httpPost);
-            response.getEntity().getContent();
+            is = response.getEntity().getContent();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null)
+            {
+                sb.append(line + "\n");
+            }
+            is.close();
+            if (sb.toString().equals(""))
+                return "Try again";
         }
         catch (Exception e)
         {

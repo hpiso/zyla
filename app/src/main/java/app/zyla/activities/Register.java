@@ -69,6 +69,7 @@ public class Register extends AppCompatActivity {
                 retry();
             }
         } catch (Exception e) {
+            System.err.println("Error during inscription: " + e.toString());
             retry();
         }
     }
