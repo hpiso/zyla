@@ -36,19 +36,21 @@
 
     <!--Connection-->
     <string name="co_email">Email</string>
-    <string name="co_password">Password</string>
-    <string name="co_sign_in">Sign In</string>
-    <string name="co_register_info">Do not have an account yet?</string>
-    <string name="co_register">Register</string>
-    <string name="co_forgot_pass">Forgot password?</string>
+    <string name="co_password">Mot de passe</string>
+    <string name="co_sign_in">Se connecter</string>
+    <string name="co_register_info">Vous n\'avez pas encore de compte?</string>
+    <string name="co_register">S\'inscrire</string>
+    <string name="co_forgot_pass">Mot de passe oublié?</string>
 
     <!--Register-->
-    <string name="reg_info">Choose the register mode</string>
-    <string name="reg_choice">Or</string>
-    <string name="reg_gender_man">Man</string>
-    <string name="reg_gender_woman">Woman</string>
-    <string name="reg_age">Age</string>
-    <string name="reg_conf_password">Confirm password</string>
+    <string name="reg_info">Choisir le mode d\'inscription</string>
+    <string name="reg_choice">Ou</string>
+    <string name="reg_gender_man">Homme</string>
+    <string name="reg_gender_woman">Femme</string>
+    <string name="reg_age">Âge</string>
+    <string name="reg_conf_password">Confirmer le mot de passe</string>
+    <string name="reg_error_inscription">Une erreur est survenue lors de l\'inscription</string>
+
     <string name="title_activity_maps">Map</string>
 
 </resources>

@@ -52,7 +52,7 @@ public class Inscription extends AsyncTask<String, Void, String> {
         catch (Exception e)
         {
             Log.e("log_tag", "Error in http connection " + e.toString());
-            return null;
+            return "Try again";
         }
 
         return "Success";

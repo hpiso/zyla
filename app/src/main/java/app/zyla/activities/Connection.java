@@ -83,11 +83,20 @@ public class Connection extends AppCompatActivity {
     private User parseInfo(String email, String password, String infos) {
         String[] tab_info = infos.split("\n");
         String birthdate = tab_info[0];
-        int year = Integer.valueOf(birthdate.substring(4));
-        DateFormat format = new SimpleDateFormat("yyyy");
-        Date date = new Date();
-        int age = Integer.valueOf(format.format(date)) - year;
-        int gender = Integer.valueOf(tab_info[1]);
+        int age;
+        if (birthdate.equals("null"))
+            age = 0;
+        else {
+            int year = Integer.valueOf(birthdate.substring(4));
+            DateFormat format = new SimpleDateFormat("yyyy");
+            Date date = new Date();
+            age = Integer.valueOf(format.format(date)) - year;
+        }
+        int gender;
+        if (tab_info[1].equals("null"))
+            gender = 0;
+        else
+            gender = Integer.valueOf(tab_info[1]);
         return new User(email, password, age, gender);
     }
 }

@@ -93,8 +93,16 @@ public class SignIn extends AsyncTask<String, Void, String> {
             for (int i = 0; i < jsonArray.length(); ++i)
             {
                 JSONObject json_data = jsonArray.getJSONObject(i);
-                res += json_data.getString("birthdate") + "\n"
-                        + json_data.getInt("gender");
+                String birthdate = json_data.getString("birthdate");
+                if (birthdate == null)
+                    birthdate = "null";
+                String gender;
+                if (json_data.get("gender").equals(null))
+                    gender = "null";
+                else
+                    gender = String.valueOf(json_data.getInt("gender"));
+                res += birthdate + "\n"
+                        + gender;
             }
         }
         catch (Exception e)
