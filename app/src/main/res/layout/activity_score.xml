@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_score"
     android:layout_width="match_parent"
@@ -14,16 +15,15 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:text="Score / Rewards"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
-            android:textAlignment="textStart"
-            android:paddingLeft="20dp"
-            android:paddingTop="20dp"
-            android:textSize="18sp"
+            android:textAlignment="center"
+            android:textSize="30sp"
             android:textStyle="bold"
-            android:layout_marginBottom="30dp" />
+            android:layout_marginBottom="30dp"
+            android:text="Score"
+            android:paddingTop="20dp" />
 
         <TextView
             android:text="80%"
@@ -49,7 +49,59 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:elevation="20dp"
-            android:scaleY="2" />
+            android:scaleY="2"
+            android:layout_marginBottom="50dp" />
+
+        <TextView
+            android:text="Rewards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:textSize="30sp"
+            android:textStyle="normal|bold"
+            android:textAlignment="center"
+            android:layout_marginBottom="20dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/trophy_perfect_bw"
+                android:id="@+id/img_perfect"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/trophy_useless_bw"
+                android:id="@+id/img_useless"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/trophy_expert_bw"
+                android:id="@+id/img_expert"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/trophy_king_bw"
+                android:id="@+id/imageView6"
+                android:layout_weight="1" />
+        </LinearLayout>
 
 
     </LinearLayout>
