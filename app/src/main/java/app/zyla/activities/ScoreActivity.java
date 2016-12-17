@@ -2,8 +2,10 @@ package app.zyla.activities;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -44,5 +46,17 @@ public class ScoreActivity extends AppCompatActivity {
         taskEvolution.setText(average + " %");
         pb.setProgress(average);
 
+        if (db.isPerfectScore()) {
+            ImageView img_perfect = (ImageView) findViewById(R.id.img_perfect);
+            Drawable dw_img_perfect = getResources().getDrawable( R.drawable.trophy_perfect);
+            img_perfect.setImageDrawable(dw_img_perfect);
+        }
+
+        if (db.isUselessScore()) {
+            ImageView img_useless = (ImageView) findViewById(R.id.img_useless);
+            Drawable dw_img_perfect = getResources().getDrawable( R.drawable.trophy_useless);
+            img_useless.setImageDrawable(dw_img_perfect);
+        }
+        
     }
 }

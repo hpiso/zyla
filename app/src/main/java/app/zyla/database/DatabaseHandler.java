@@ -112,20 +112,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(DatabaseHandler.KEY_NAME, task.getName());
         values.put(DatabaseHandler.KEY_IS_DONE, task.getIsDone());
         values.put(DatabaseHandler.KEY_CATEGORY, task.getCategory());
-        //values.put(DatabaseHandler.KEY_CREATION_DATE, task.getCreationDate());
+        values.put(DatabaseHandler.KEY_CREATION_DATE, task.getCreationDate());
 
         //JUST FOR TESTTING - TO REMOVE
-        switch (Helper.randInt(1, 3)) {
-            case 1:
-                values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-09 00:00:00");
-                break;
-            case 2:
-                values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-11 00:00:00");
-                break;
-            case 3:
-                values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-13 00:00:00");
-                break;
-        }
+//        switch (Helper.randInt(1, 3)) {
+//            case 1:
+//                values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-09 00:00:00");
+//                break;
+//            case 2:
+//                values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-11 00:00:00");
+//                break;
+//            case 3:
+//                values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-13 00:00:00");
+//                break;
+//        }
 
         values.put(DatabaseHandler.KEY_LIMIT_DATE, task.getLimitDate());
         values.put(DatabaseHandler.KEY_LIMIT_TIME, task.getLimitTime());
@@ -314,5 +314,49 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // return contact list
         return scoreList;
+    }
+
+    public boolean isPerfectScore() {
+        ArrayList<Integer> scoreList = new ArrayList<Integer>();
+        // Select All Query
+        String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_SCORES + " WHERE " + KEY_SCORE_NB + " = 0";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                scoreList.add(cursor.getInt(1));
+            } while (cursor.moveToNext());
+        }
+
+        if (scoreList.size() > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isUselessScore() {
+        ArrayList<Integer> scoreList = new ArrayList<Integer>();
+        // Select All Query
+        String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_SCORES + " WHERE " + KEY_SCORE_NB + " = 50";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                scoreList.add(cursor.getInt(1));
+            } while (cursor.moveToNext());
+        }
+
+        if (scoreList.size() > 0) {
+            return true;
+        }
+
+        return false;
     }
 }
