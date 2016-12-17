@@ -1,5 +1,7 @@
 package app.zyla.activities;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ProgressBar;
@@ -31,6 +33,12 @@ public class ScoreActivity extends AppCompatActivity {
 
         ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
         pb.setMax(100);
+
+        if (average <= 40) {
+            pb.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
+        } else if (average >= 70) {
+            pb.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        }
 
         TextView taskEvolution = (TextView) findViewById(R.id.level_procrastination);
         taskEvolution.setText(average + " %");

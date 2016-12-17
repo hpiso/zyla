@@ -2,6 +2,8 @@ package app.zyla.activities;
 
 import android.app.LauncherActivity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -58,6 +60,12 @@ public class ShowTaskActivity extends AppCompatActivity {
 
         Helper helper = new Helper();
         int evolutionInPercentage = helper.getEvolutionInPercentage(task);
+
+        if (evolutionInPercentage <= 40) {
+            pb.getProgressDrawable().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
+        } else if (evolutionInPercentage >= 70) {
+            pb.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        }
 
         TextView taskEvolution = (TextView) findViewById(R.id.task_evolution);
         taskEvolution.setText(evolutionInPercentage + " %");

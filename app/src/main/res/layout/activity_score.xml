@@ -22,7 +22,8 @@
             android:paddingLeft="20dp"
             android:paddingTop="20dp"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginBottom="30dp" />
 
         <TextView
             android:text="80%"
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView3"
             android:textAlignment="center"
-            android:textSize="14sp" />
+            android:textSize="18sp" />
 
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
