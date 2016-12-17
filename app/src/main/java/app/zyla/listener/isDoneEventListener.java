@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import app.zyla.R;
+import app.zyla.Service.Helper;
 import app.zyla.activities.MainActivity;
 import app.zyla.activities.ShowTaskActivity;
 import app.zyla.adapters.SectionsPagerAdapter;
@@ -44,6 +45,11 @@ public class isDoneEventListener implements CompoundButton.OnCheckedChangeListen
         if (isChecked) {
             task.setIsDone(1);
             toastMessage = "Task " + task.getName() + " sets as Done";
+
+            Helper helper = new Helper();
+            int evolutionInPercentage = helper.getEvolutionInPercentage(task);
+            db.addScore(evolutionInPercentage);
+
         } else {
             task.setIsDone(0);
             toastMessage = "Task " + task.getName() + " sets as Todo";

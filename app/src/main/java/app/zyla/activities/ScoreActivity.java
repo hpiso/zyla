@@ -2,6 +2,8 @@ package app.zyla.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -19,11 +21,20 @@ public class ScoreActivity extends AppCompatActivity {
         DatabaseHandler db = new DatabaseHandler(this);
         ArrayList<Task> tasksTodos = db.getAllTodoTasks();
         ArrayList<Task> tasksDones = db.getAllDoneTasks();
+        ArrayList<Integer>  scores = db.getScore();
         Integer nbTaskTodo = tasksTodos.size();
         Integer nbTaskDone = tasksDones.size();
 
-        System.out.println(nbTaskTodo);
-        System.out.println(nbTaskDone);
+        int sum = 0;
+        for (int d : scores) sum += d;
+        int average = sum / scores.size();
+
+        ProgressBar pb = (ProgressBar) findViewById(R.id.progressBar);
+        pb.setMax(100);
+
+        TextView taskEvolution = (TextView) findViewById(R.id.level_procrastination);
+        taskEvolution.setText(average + " %");
+        pb.setProgress(average);
 
     }
 }

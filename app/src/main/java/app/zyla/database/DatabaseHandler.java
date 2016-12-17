@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import app.zyla.Service.Helper;
 import app.zyla.models.Task;
 import app.zyla.models.Trophy;
 import app.zyla.models.User;
@@ -45,6 +46,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_DATE = "date";
 
+    //Score table
+    public static final String TABLE_SCORES = "score";
+    public static final String KEY_SCORE_NB = "score_nb";
+
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -69,6 +74,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_ID + "INTEGER PRIMARY KEY," + KEY_TITLE + " TEXT," + KEY_DESCRIPTION
                 + " TEXT," + KEY_IMAGE + " TEXT," + KEY_DATE + " DATETIME)";
         db.execSQL(CREATE_TROPHY_TABLE);
+
+        String CREATE_SCORE_TABLE = "CREATE TABLE " + TABLE_SCORES + "("
+                + KEY_ID + "INTEGER PRIMARY KEY," + KEY_SCORE_NB + " INTEGER" + ")";
+        db.execSQL(CREATE_SCORE_TABLE);
     }
 
     /**
@@ -88,6 +97,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Drop older table if existed
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TASKS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TROPHY);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SCORES);
 
         onCreate(db);
     }
@@ -101,8 +112,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(DatabaseHandler.KEY_NAME, task.getName());
         values.put(DatabaseHandler.KEY_IS_DONE, task.getIsDone());
         values.put(DatabaseHandler.KEY_CATEGORY, task.getCategory());
-        values.put(DatabaseHandler.KEY_CREATION_DATE, task.getCreationDate());
-        //values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-10 00:00:00"); JUST FOR TESTTING - TO REMOVE
+        //values.put(DatabaseHandler.KEY_CREATION_DATE, task.getCreationDate());
+
+        //JUST FOR TESTTING - TO REMOVE
+        switch (Helper.randInt(1, 3)) {
+            case 1:
+                values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-09 00:00:00");
+                break;
+            case 2:
+                values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-11 00:00:00");
+                break;
+            case 3:
+                values.put(DatabaseHandler.KEY_CREATION_DATE, "2016-12-13 00:00:00");
+                break;
+        }
+
         values.put(DatabaseHandler.KEY_LIMIT_DATE, task.getLimitDate());
         values.put(DatabaseHandler.KEY_LIMIT_TIME, task.getLimitTime());
         values.put(DatabaseHandler.KEY_MOTIVATION, task.getMotivation());
@@ -258,5 +282,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return trophies;
+    }
+
+    // Adding new task
+    public void addScore(Integer score) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DatabaseHandler.KEY_SCORE_NB, score);
+
+        // Inserting Row
+        db.insert(DatabaseHandler.TABLE_SCORES, null, values);
+        db.close(); // Closing database connection
+    }
+
+    public ArrayList<Integer> getScore() {
+        ArrayList<Integer> scoreList = new ArrayList<Integer>();
+        // Select All Query
+        String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_SCORES;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                scoreList.add(cursor.getInt(1));
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return scoreList;
     }
 }
