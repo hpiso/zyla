@@ -50,11 +50,19 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
+        android:layout_width="85dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
         android:gravity="right"
         android:layout_gravity="center_vertical">
+
+        <TextView
+            android:text="45%"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/level_procrastination"
+            android:layout_weight="0.75"
+            android:gravity="center_vertical"
+            android:textSize="18sp" />
 
         <CheckBox
             android:layout_width="wrap_content"

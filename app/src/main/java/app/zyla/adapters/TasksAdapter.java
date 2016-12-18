@@ -13,6 +13,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import app.zyla.R;
+import app.zyla.Service.Helper;
 import app.zyla.fragments.StateFragment;
 import app.zyla.listener.isDoneEventListener;
 import app.zyla.models.Category;
@@ -35,9 +36,17 @@ public class TasksAdapter extends ArrayAdapter<Task> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.task_item, parent, false);
         }
 
+        //set Name
         TextView taskName = (TextView) convertView.findViewById(R.id.name);
         taskName.setText(task.getName());
 
+        // set lvl of procrastination
+        Helper helper = new Helper();
+        int evolutionInPercentage = helper.getEvolutionInPercentage(task);
+        TextView lvlProcrastination = (TextView) convertView.findViewById(R.id.level_procrastination);
+        lvlProcrastination.setText(evolutionInPercentage + "%");
+
+        //set date
         TextView taskInfoDate = (TextView) convertView.findViewById(R.id.infoDate);
         DateFormat formatter = new SimpleDateFormat("dd MMM");
         java.sql.Timestamp ts = java.sql.Timestamp.valueOf(task.getLimitDate() + " 00:00:00");
