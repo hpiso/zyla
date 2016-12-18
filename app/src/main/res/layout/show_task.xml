@@ -65,7 +65,25 @@
                 android:paddingRight="20dp"
                 android:elevation="20dp"
                 android:layout_weight="0.06"
-                android:scaleY="2" />
+                android:scaleY="2"
+                android:layout_marginBottom="50dp" />
+
+            <Button
+                android:text="Advise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/advise_btn"
+                android:textColor="#fff"
+                android:background="@color/orangeColor"
+                android:layout_marginBottom="20dp" />
+
+            <Button
+                android:text="Delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/delete_btn"
+                android:background="@color/redColor"
+                android:textColor="#fff" />
         </LinearLayout>
 
     </LinearLayout>
