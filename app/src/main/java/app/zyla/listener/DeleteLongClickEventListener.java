@@ -39,6 +39,16 @@ public class DeleteLongClickEventListener implements AdapterView.OnItemLongClick
         dialog.setCancelable(true);
 
         Button advise = (Button) dialog.findViewById(R.id.advise);
+
+        switch (task.getCategory()) {
+            case "Cleaning":
+                advise.setVisibility(View.GONE);
+                break;
+            case "Study":
+                advise.setVisibility(View.GONE);
+                break;
+        }
+
         advise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
