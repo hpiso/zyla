@@ -57,6 +57,12 @@ public class ScoreActivity extends AppCompatActivity {
             Drawable dw_img_perfect = getResources().getDrawable( R.drawable.trophy_useless);
             img_useless.setImageDrawable(dw_img_perfect);
         }
-        
+
+        TextView nbDone = (TextView) findViewById(R.id.nb_done);
+        nbDone.setText("Number of done tasks : " + nbTaskDone);
+
+        TextView nbTodo = (TextView) findViewById(R.id.nb_todo);
+        nbTodo.setText("Number of todo tasks : " + nbTaskTodo);
+
     }
 }
