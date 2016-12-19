@@ -1,8 +1,11 @@
 package app.zyla.database;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,7 +13,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import app.zyla.Service.Helper;
 import app.zyla.models.Task;
 import app.zyla.models.Trophy;
 import app.zyla.models.User;
@@ -188,6 +190,56 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         // return contact list
         return taskList;
+    }
+
+    public int getCountTodoTasks24Hours() {
+        int taskCount = 0;
+        // Select All Query
+        String selectQuery = "SELECT * FROM " + DatabaseHandler.TABLE_TASKS
+                + " WHERE "+ KEY_IS_DONE +" = 0" + " ORDER BY " + KEY_LIMIT_DATE + ", "
+                + KEY_LIMIT_TIME + " ASC";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        Calendar c1 = Calendar.getInstance();
+        Calendar c2 = Calendar.getInstance();
+
+        c1.add(Calendar.DAY_OF_YEAR, -1);
+        c2.add(Calendar.DAY_OF_YEAR, 2);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        String formattedDateToCompare = dateFormat.format(c1.getTime());
+        String formattedDateToday = dateFormat.format(c2.getTime());
+        Date dateToCompare = null;
+        Date dateToday = null;
+        try {
+            dateToCompare = dateFormat.parse(formattedDateToCompare);
+            dateToday = dateFormat.parse(formattedDateToday);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // looping through all rows
+        if (cursor.moveToFirst()) {
+            do {
+                Date dateCursor = null;
+                try {
+                    dateCursor = dateFormat.parse(cursor.getString(6));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                if (dateToCompare.compareTo(dateCursor)<0 && dateToday.compareTo(dateCursor)>0)
+                {
+                    taskCount++;
+                }
+
+            } while (cursor.moveToNext());
+        }
+
+        // return count
+        return taskCount;
     }
 
     public ArrayList<Task> getAllDoneTasks() {

@@ -1,26 +1,27 @@
 package app.zyla.activities;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
-import java.util.ArrayList;
+
 import app.zyla.adapters.SectionsPagerAdapter;
 import app.zyla.R;
 import app.zyla.database.DatabaseHandler;
-import app.zyla.models.Task;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListView taskListView;
-    private ArrayList<Task> tasks;
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
@@ -82,6 +83,37 @@ public class MainActivity extends AppCompatActivity {
         });
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+
+        DatabaseHandler db = new DatabaseHandler(this);
+        int tasksTodos = db.getCountTodoTasks24Hours();
+
+        if(tasksTodos != 0) {
+            //----------NOTIFICATION----------
+            NotificationCompat.Builder mBuilder =
+                    (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.ic_date_range_white_24dp)
+                            .setContentTitle("ZYLA")
+                            .setContentText("You have "+tasksTodos+" task(s) to do today or tomorrow");
+            Intent resultIntent = new Intent(this, MainActivity.class);
+
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+
+            stackBuilder.addParentStack(MainActivity.class);
+
+            stackBuilder.addNextIntent(resultIntent);
+            PendingIntent resultPendingIntent =
+                    stackBuilder.getPendingIntent(
+                            0,
+                            PendingIntent.FLAG_UPDATE_CURRENT
+                    );
+            mBuilder.setContentIntent(resultPendingIntent);
+            NotificationManager mNotificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            mNotificationManager.notify(0, mBuilder.build());
+        }
+
+
     }
 
     @Override
